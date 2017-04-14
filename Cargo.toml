@@ -6,3 +6,8 @@ authors = ["Willy Aguirre <marti1125@gmail.com>"]
 [dependencies]
 rocket = "0.2.4"
 rocket_codegen = "0.2.4"
+
+[dependencies.rocket_contrib]
+version = "*"
+default-features = false
+features = ["handlebars_templates", "tera_templates"]
