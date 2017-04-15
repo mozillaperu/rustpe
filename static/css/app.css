@@ -1,0 +1,49 @@
+@font-face {
+    font-family: FiraSans-Medium;
+    src: url("/fonts/FiraSans-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: FiraSans-Light;
+    src: url("/fonts/FiraSans-Light.otf") format("opentype");
+}
+
+body {
+  background-color: #F4F4F4;
+  font-family: FiraSans-Light;
+}
+
+a, a:hover {
+  font-size: 24px;
+  color: black;
+  text-decoration: none;
+}
+
+p {
+  font-size: 18px;
+  padding: 20px 0 20px 0;
+}
+
+h1 {
+  font-family: FiraSans-Medium;
+}
+
+.logo {
+  width: 180px;
+  height: 180px;
+}
+
+.blue {
+  color: #428BCA;
+}
+
+#footer {
+  margin-top: 110px;
+  width: 100%;
+  position: absolute;
+  background-color: #E5E5E5;
+}
+
+#footer > div {
+  padding-top: 20px;
+}

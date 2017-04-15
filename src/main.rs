@@ -1,7 +1,6 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 
-use std::io;
 use std::path::{Path, PathBuf};
 
 extern crate rocket_contrib;
@@ -15,9 +14,10 @@ fn files(file: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("static/").join(file)).ok()
 }
 
-#[get("/test")]
-fn test() -> &'static str {
-    "Hello, World!"
+#[error(404)]
+fn not_found() -> Template {
+    let context = ();
+    Template::render("404", &context)
 }
 
 #[get("/")]
@@ -27,5 +27,8 @@ fn index() -> Template {
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![files, index, test]).launch();
+    rocket::ignite()
+    .mount("/", routes![files, index])
+    .catch(errors![not_found])
+    .launch();
 }
