@@ -46,6 +46,7 @@ h1 {
   width: 100%;
   position: absolute;
   background-color: #E5E5E5;
+  bottom: 0;
 }
 
 #footer > div {
