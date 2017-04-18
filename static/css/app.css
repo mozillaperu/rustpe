@@ -13,6 +13,10 @@ body {
   font-family: FiraSans-Light;
 }
 
+header {
+    margin-top: 50px;
+}
+
 a, a:hover {
   font-size: 24px;
   color: black;
