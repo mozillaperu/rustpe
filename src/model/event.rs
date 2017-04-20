@@ -2,27 +2,27 @@ use mysql as my;
 use chrono;
 use mysql::Pool as Pool;
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Event {
     id: i32,
     name: String,
-    about: String,
-    date: chrono::NaiveDateTime
+    about: String
+    //date: chrono::NaiveDateTime
 }
 
 impl Event {
 
     pub fn all(pool: Pool) -> Vec<Event> {
         let selected_events: Vec<Event> =
-        pool.prep_exec("SELECT id, name, about, date from rustpe.event", ())
+        pool.prep_exec("SELECT id, name, about from rustpe.event", ())
         .map(|result| {
             result.map(|x| x.unwrap()).map(|row| {
-                let (id, name, about, date) = my::from_row(row);
+                let (id, name, about) = my::from_row(row);
                 Event {
                     id: id,
                     name: name,
-                    about: about,
-                    date: date
+                    about: about
+                    //date: date
                 }
             }).collect()
         }).unwrap();
