@@ -1,13 +1,23 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 
-use std::path::{Path, PathBuf};
-
-extern crate rocket_contrib;
+//extern crate rocket_contrib;
 extern crate rocket;
+extern crate mysql;
+extern crate chrono;
+extern crate serde_json;
 
+#[macro_use] extern crate rocket_contrib;
+#[macro_use] extern crate serde_derive;
+
+use std::path::{Path, PathBuf};
 use rocket_contrib::Template;
+use rocket_contrib::{JSON, Value};
 use rocket::response::NamedFile;
+
+mod helper;
+mod model;
+
 
 #[get("/<file..>")]
 fn files(file: PathBuf) -> Option<NamedFile> {
@@ -20,6 +30,14 @@ fn not_found() -> Template {
     Template::render("404", &context)
 }
 
+#[get("/events")]
+fn events() -> JSON<Value> {
+    let pool = helper::DB::connection();
+    let selected_events = model::Event::all(pool);
+    println!("Events {:?}", selected_events);
+    JSON(selected_events);
+}
+
 #[get("/")]
 fn index() -> Template {
     let context = ();
@@ -28,7 +46,7 @@ fn index() -> Template {
 
 fn main() {
     rocket::ignite()
-    .mount("/", routes![files, index])
+    .mount("/", routes![files, index, events])
     .catch(errors![not_found])
     .launch();
 }

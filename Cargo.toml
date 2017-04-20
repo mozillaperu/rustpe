@@ -6,6 +6,11 @@ authors = ["Willy Aguirre <marti1125@gmail.com>"]
 [dependencies]
 rocket = "0.2.5"
 rocket_codegen = "0.2.5"
+mysql = "*"
+chrono = "0.3"
+serde = "0.9"
+serde_json = "0.9"
+serde_derive = "0.9"
 
 [dependencies.rocket_contrib]
 version = "0.2.5"
