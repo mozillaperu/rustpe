@@ -19,7 +19,7 @@ mod model;
 use model::event::Event;
 
 
-#[get("/<file..>")]
+#[get("/<file..>", rank = 5)]
 fn files(file: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("static/").join(file)).ok()
 }
@@ -30,7 +30,7 @@ fn not_found() -> Template {
     Template::render("404", &context)
 }
 
-#[get("/events", format = "application/json")]
+#[get("/events")]
 fn events() -> JSON<Vec<Event>> {
     let pool = helper::DB::connection();
     let selected_events = model::Event::all(pool);
