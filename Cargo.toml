@@ -7,7 +7,7 @@ authors = ["Willy Aguirre <marti1125@gmail.com>"]
 rocket = "0.2.5"
 rocket_codegen = "0.2.5"
 mysql = "*"
-chrono = "0.3"
+chrono = { version = "0.3", features = ["serde"] }
 serde = "0.9"
 serde_json = "0.9"
 serde_derive = "0.9"
