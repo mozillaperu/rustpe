@@ -8,9 +8,21 @@
     src: url("/fonts/FiraSans-Light.otf") format("opentype");
 }
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   background-color: #F4F4F4;
   font-family: FiraSans-Light;
+  position: relative;
 }
 
 header {
@@ -19,7 +31,7 @@ header {
 
 a, a:hover {
   font-size: 24px;
-  color: black;
+  color: #231F1F;
   text-decoration: none;
 }
 
@@ -41,12 +53,16 @@ h1 {
   color: #428BCA;
 }
 
+#event_block {
+  background-color: #231F1F;
+  color: white;
+}
+
 #footer {
   margin-top: 110px;
-  width: 100%;
-  position: absolute;
   background-color: #E5E5E5;
-  bottom: 0;
+  width: 100%
+  position: fixed;
 }
 
 #footer > div {
