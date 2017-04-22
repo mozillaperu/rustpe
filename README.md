@@ -1,7 +1,9 @@
 # Rust PE
 
-Corriendo en Heroku https://vast-fjord-26312.herokuapp.com/
+http://rustpe.org/
 
-Desarrollado con [rocket.rs](https://rocket.rs/)
+> Como servidor usa Heroku
 
-[Heroku buildpack para Rust](https://github.com/emk/heroku-buildpack-rust)
+> Desarrollado con [rocket.rs](https://rocket.rs/)
+
+>[Heroku buildpack para Rust](https://github.com/emk/heroku-buildpack-rust)
