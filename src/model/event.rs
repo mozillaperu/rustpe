@@ -14,7 +14,7 @@ impl Event {
 
     pub fn all(pool: Pool) -> Vec<Event> {
         let selected_events: Vec<Event> =
-        pool.prep_exec("SELECT id, name, about, date from rustpe.event", ())
+        pool.prep_exec("SELECT id, name, about, date from heroku_c0585ee816e7fb3.event", ())
         .map(|result| {
             result.map(|x| x.unwrap()).map(|row| {
                 let (id, name, about, date) = my::from_row(row);
