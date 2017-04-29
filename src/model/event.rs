@@ -8,25 +8,25 @@ pub struct Event {
     name: String,
     about: String,
     date: chrono::NaiveDateTime,
-    url: String,
-    slide: String
+    url_event: String,
+    slide_event: String
 }
 
 impl Event {
 
     pub fn all(pool: Pool) -> Vec<Event> {
         let selected_events: Vec<Event> =
-        pool.prep_exec("SELECT id, name, about, date, url, slide from heroku_c0585ee816e7fb3.event", ())
+        pool.prep_exec("SELECT id, name, about, date, url_event, slide_event from heroku_c0585ee816e7fb3.event", ())
         .map(|result| {
             result.map(|x| x.unwrap()).map(|row| {
-                let (id, name, about, date, url, slide) = my::from_row(row);
+                let (id, name, about, date, url_event, slide_event) = my::from_row(row);
                 Event {
                     id: id,
                     name: name,
                     about: about,
                     date: date,
-                    url: url,
-                    slide: slide
+                    url_event: url_event,
+                    slide_event: slide_event
                 }
             }).collect()
         }).unwrap();

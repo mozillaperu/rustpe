@@ -2,15 +2,15 @@ $(document).ready(function(){
 
   $.get('http://rustpe.org/events', function(data) {
     $.each(data, function(k, v) {
-      $('#events').append(v.name, convertDate(v.date), v.about, v.slide);
+      eventTemplate(v.name, convertDate(v.date), v.about, v.slide_event);
     })
   });
 
   function eventTemplate(name, date, about, slide) {
-    return '<h3>'+v.name+'</h3>' +
-           '<h4>'+convertDate(v.date)+'</h4>' +
-           '<p>'+v.about+'</p>' +
-           '<p><a href="'+slide+'" target="_blank">Presentación</a>';
+    return $('#events').append('<h3>'+name+'</h3>' +
+           '<h4>'+date+'</h4>' +
+           '<p>'+about+'</p>' +
+           '<p><a class="white" href="'+slide+'" target="_blank">Presentación</a></p>');
   }
 
   function convertDate(date) {
