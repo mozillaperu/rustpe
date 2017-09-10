@@ -3,21 +3,10 @@
 
 extern crate rocket_contrib;
 extern crate rocket;
-extern crate mysql;
-extern crate chrono;
-extern crate serde_json;
-
-#[macro_use] extern crate serde_derive;
 
 use std::path::{Path, PathBuf};
 use rocket_contrib::Template;
-use rocket_contrib::{JSON};
 use rocket::response::NamedFile;
-
-mod helper;
-mod model;
-use model::event::Event;
-
 
 #[get("/<file..>", rank = 5)]
 fn files(file: PathBuf) -> Option<NamedFile> {
@@ -30,14 +19,6 @@ fn not_found() -> Template {
     Template::render("404", &context)
 }
 
-#[get("/events")]
-fn events() -> JSON<Vec<Event>> {
-    let pool = helper::DB::connection();
-    let selected_events = model::Event::all(pool);
-    println!("Events {:?}", selected_events);
-    JSON(selected_events)
-}
-
 #[get("/")]
 fn index() -> Template {
     let context = ();
@@ -46,7 +27,8 @@ fn index() -> Template {
 
 fn main() {
     rocket::ignite()
-    .mount("/", routes![files, index, events])
+    .mount("/", routes![files, index])
     .catch(errors![not_found])
+    .attach(Template::fairing())
     .launch();
 }

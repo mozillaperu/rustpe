@@ -4,15 +4,10 @@ version = "0.1.0"
 authors = ["Willy Aguirre <marti1125@gmail.com>"]
 
 [dependencies]
-rocket = "0.2.5"
-rocket_codegen = "0.2.5"
-mysql = "*"
-chrono = { version = "0.3", features = ["serde"] }
-serde = "0.9"
-serde_json = "0.9"
-serde_derive = "0.9"
+rocket = "0.3.2"
+rocket_codegen = "0.3.2"
 
 [dependencies.rocket_contrib]
-version = "0.2.5"
+version = "0.3.2"
 default-features = false
 features = ["json", "handlebars_templates", "tera_templates"]
